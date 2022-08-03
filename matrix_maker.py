@@ -23,6 +23,12 @@ from Bio import Entrez
 from Bio import SeqIO
 
 
+import ssl
+if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
+	getattr(ssl, '_create_unverified_context', None)):
+	ssl._create_default_https_context = ssl._create_unverified_context
+
+
 class Gene(object):
     """
     Class responsible for managing the search terms of genes we are searching for in NCBI.
